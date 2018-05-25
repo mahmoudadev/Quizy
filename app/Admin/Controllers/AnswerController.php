@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Answer;
 
+use App\Question;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -74,9 +75,9 @@ class AnswerController extends Controller
         return Admin::grid(Answer::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-
+            $grid->column('question.body');
+            $grid->is_correct('Is Correct');
             $grid->created_at();
-            $grid->updated_at();
         });
     }
 
@@ -90,6 +91,22 @@ class AnswerController extends Controller
         return Admin::form(Answer::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->select('question_id')->options(function (){
+                $questions = Question::all();
+
+                foreach ($questions as $question) {
+
+
+                    if($question)
+                    {
+                        return [$question->id => $question->body];
+                    }
+
+                }
+
+            });
+            $form->text('answer','Answer');
+            $form->radio('is_correct')->options([0 => 'False', 1=> 'True'])->default(0)->stacked();
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

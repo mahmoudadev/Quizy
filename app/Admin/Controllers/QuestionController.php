@@ -76,7 +76,7 @@ class QuestionController extends Controller
         return Admin::grid(Question::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->quiz_id('Quiz');
+            $grid->column('quiz.title', 'Quiz');
             $grid->body('Question Body');
             $grid->created_at();
             $grid->updated_at();
@@ -93,7 +93,6 @@ class QuestionController extends Controller
         return Admin::form(Question::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $colom = "Quiz";
             $form->select('quiz_id')->options(function (){
                 $quizzes = Quiz::all();
 

@@ -11,8 +11,4 @@ class QuizzesController extends Controller
 
 
 
-    public function answers()
-    {
-        return $this->hasMany(Answer::class);
-    }
 }
