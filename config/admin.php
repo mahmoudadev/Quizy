@@ -10,7 +10,7 @@ return [
     /*
      * Logo in admin panel header.
      */
-    'logo' => '<b>Quizy</b>admin',
+    'logo' => '<b>Quizy</b> admin',
 
     /*
      * Mini-logo in admin panel header.
