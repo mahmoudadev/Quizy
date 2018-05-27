@@ -2,6 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+
+use App\Quiz;
+use DB;
+use App\Students_score;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Facades\Admin;
@@ -18,24 +22,20 @@ class HomeController extends Controller
             $content->header('Dashboard');
             $content->description('Description...');
 
-            $content->row(Dashboard::title());
-
-            $content->body(view('admin.charts.bar'));
+            $students_score = DB::table('students_scores')
+                ->select( 'quiz_id', DB::raw('count(*) as total'))
+                ->groupBy('quiz_id')
+                ->get();
+            $quizzes = Quiz::all('title');
+            $content->body(view('admin.charts.bar',[
+                'quizzes' => $quizzes,
+                'studentScore' => $students_score
+            ]));
 
 
             $content->row(function (Row $row) {
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::environment());
-                });
 
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::extensions());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::dependencies());
-                });
             });
 
         });

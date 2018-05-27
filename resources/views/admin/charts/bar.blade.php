@@ -1,14 +1,34 @@
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
     $(function () {
+
+
+        var labelArray = [];
+        var scoresval = [];
+        var data ={!! json_encode($quizzes) !!};
+        var scores ={!! json_encode($studentScore) !!};
+
+        console.log(scores[0].total);
+        data.forEach(function(element){
+            labelArray.push(element.title);
+        });
+
+        scores.forEach(function(element){
+            scoresval.push(element.total);
+        });
+
+        console.log(labelArray);
+
+        console.log({!! json_encode($quizzes) !!});
+
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ["PHP QUIZ", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: labelArray,
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: '# of students',
+                    data: scoresval,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

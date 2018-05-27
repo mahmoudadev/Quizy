@@ -14,9 +14,15 @@ class QuizzesController extends Controller
 
     public function index()
     {
+        $quizzes = Quiz::all();
+        return view('quiz.index', compact('quizzes'));
+    }
 
-       $quiz =  Quiz::first();
-        return view('quiz', compact('quiz'));
+
+    public function show($id)
+    {
+        $quiz =  Quiz::find($id);
+        return view('quiz.show', compact('quiz'));
     }
 
 

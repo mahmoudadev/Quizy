@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Technical Quiz</h1>
+<h1>{{$quiz->title}} Quiz</h1>
 <p id="demo"></p>
 
 <form action="/students_scores/{{Request::segment(2)}}/{{Request::segment(3)}}" method="post">
