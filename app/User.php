@@ -2,34 +2,36 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Encore\Admin\Traits\AdminBuilder;
+use Illuminate\Auth\Authenticatable;
+use Encore\Admin\Auth\Database\HasPermissions;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model;
 
-/**
- * App\User
- *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @mixin \Eloquent
- */
-class User extends Authenticatable
+class User extends Model implements AuthenticatableContract
 {
-    use Notifiable;
+    use Authenticatable, AdminBuilder, HasPermissions;
+
+    protected $fillable = ['username', 'password', 'name', 'avatar'];
 
     /**
-     * The attributes that are mass assignable.
+     * Create a new Eloquent model instance.
      *
-     * @var array
+     * @param array $attributes
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function __construct(array $attributes = [])
+    {
+        $connection = config('admin.database.connection') ?: config('database.default');
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+        $this->setConnection($connection);
+
+        $this->setTable(config('admin.database.users_table'));
+
+        parent::__construct($attributes);
+    }
+
+    public function quiz()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }

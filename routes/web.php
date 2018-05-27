@@ -15,3 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('quiz/{user_id}/{quiz_id}', 'QuizzesController@index');
+Route::post('student_score ', 'Students_scoresController@create');

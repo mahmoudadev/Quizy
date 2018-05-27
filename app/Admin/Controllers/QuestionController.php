@@ -95,19 +95,16 @@ class QuestionController extends Controller
             $form->display('id', 'ID');
             $form->select('quiz_id')->options(function (){
                 $quizzes = Quiz::all();
-
+                $all_quizzes = [];
                 foreach ($quizzes as $quiz) {
 
-
-                    if($quiz)
-                    {
-                        return [$quiz->id => $quiz->title];
-                    }
+                    $all_quizzes[$quiz->id] = $quiz->title;
 
                 }
+                return $all_quizzes;
 
             });
-            $form->text('body');
+            $form->textarea('body');
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });

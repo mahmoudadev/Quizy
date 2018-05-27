@@ -75,7 +75,8 @@ class AnswerController extends Controller
         return Admin::grid(Answer::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-            $grid->column('question.body');
+            $grid->column('question.body', 'Question');
+            $grid->answer('Answer');
             $grid->is_correct('Is Correct');
             $grid->created_at();
         });
@@ -93,16 +94,15 @@ class AnswerController extends Controller
             $form->display('id', 'ID');
             $form->select('question_id')->options(function (){
                 $questions = Question::all();
-
+                $questionsArray = [];
                 foreach ($questions as $question) {
 
+                    $questionsArray[$question->id] = $question->body;
 
-                    if($question)
-                    {
-                        return [$question->id => $question->body];
-                    }
 
                 }
+                return $questionsArray;
+
 
             });
             $form->text('answer','Answer');
