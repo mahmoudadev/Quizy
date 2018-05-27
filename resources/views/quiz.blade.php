@@ -9,6 +9,8 @@
 </head>
 <body>
 <h1>Technical Quiz</h1>
+<p id="demo"></p>
+
 <form action="/students_scores/{{Request::segment(2)}}/{{Request::segment(3)}}" method="post">
     {{csrf_field()}}
 @foreach($quiz->question as $ques)
@@ -20,7 +22,9 @@
 @endforeach
 
     @endforeach
-    <button>submit</button>
+    <button id="submitBtn">submit</button>
 </form>
+
+<script src="{{asset('js/countdown.js')}}"></script>
 </body>
 </html>

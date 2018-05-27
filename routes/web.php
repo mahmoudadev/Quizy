@@ -16,5 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('quizzes/{user_id}/{quiz_id}', 'QuizzesController@index')->name('showQuiz');
-Route::post('students_scores/{quiz_id}/{user_id} ', 'Students_scoresController@create')->name('storeStudentScore');
 Route::get('quiz/send/{id}', 'QuizzesController@sendToUsers')->name('sendQuiz');
+Route::post('students_scores/{quiz_id}/{user_id} ', 'Students_scoresController@create')->name('storeStudentScore');
