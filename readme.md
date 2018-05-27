@@ -16,6 +16,8 @@ php artisan key:generate
 
 ### admin area login credentials
 
+GET `/admin` 
+
 username `admin` 
 password `admin` 
 
