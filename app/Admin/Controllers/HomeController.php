@@ -20,6 +20,9 @@ class HomeController extends Controller
 
             $content->row(Dashboard::title());
 
+            $content->body(view('admin.charts.bar'));
+
+
             $content->row(function (Row $row) {
 
                 $row->column(4, function (Column $column) {
@@ -34,6 +37,7 @@ class HomeController extends Controller
                     $column->append(Dashboard::dependencies());
                 });
             });
+
         });
     }
 }

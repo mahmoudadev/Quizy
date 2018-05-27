@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Technical Quiz</h1>
-<form action="/student_score" method="post">
+<form action="/students_scores/{{Request::segment(2)}}/{{Request::segment(3)}}" method="post">
     {{csrf_field()}}
 @foreach($quiz->question as $ques)
 <label for="question_1">{{$ques->body}}</label> <br>

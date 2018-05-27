@@ -24,8 +24,8 @@ class QuizController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Quiz');
+            $content->description('Quizzes CRUD');
 
             $content->body($this->grid());
         });
@@ -77,6 +77,12 @@ class QuizController extends Controller
             $grid->title('Quiz Title')->sortable();
             $grid->created_at();
             $grid->updated_at();
+            $grid->actions( function ($actions) {
+                $url = "/quiz/send/". $actions->getKey();
+                $actions->append('<a href=' . $url . ' ><i class="fa fa-send">Send to Users</i></a>');
+
+                    // prepend an action.
+            });
         });
     }
 
