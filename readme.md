@@ -13,6 +13,10 @@ composer install
 ```sh
 php artisan key:generate
 ```
+then
+```sh
+php artisan admin:install
+```
 
 ### admin area login credentials
 
