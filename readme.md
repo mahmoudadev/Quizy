@@ -15,8 +15,14 @@ php artisan key:generate
 ```
 then
 ```sh
-php artisan admin:install
+php artisan migrate
 ```
+Finaly 
+
+```sh
+php artisan db:seed --class="DatabaseSeeder"
+```
+
 
 ### admin area login credentials
 
