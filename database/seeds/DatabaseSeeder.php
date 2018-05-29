@@ -125,6 +125,29 @@ class DatabaseSeeder extends Seeder
                 'icon'      => 'fa-history',
                 'uri'       => 'auth/logs',
             ],
+            [
+                'parent_id' => 2,
+                'order'     => 8,
+                'title'     => 'Quizzes',
+                'icon'      => 'fa-history',
+                'uri'       => 'quizzes',
+            ],
+
+            [
+                'parent_id' => 2,
+                'order'     => 9,
+                'title'     => 'Questions',
+                'icon'      => 'fa-history',
+                'uri'       => 'questions',
+            ],
+
+            [
+                'parent_id' => 2,
+                'order'     => 9,
+                'title'     => 'Answers',
+                'icon'      => 'fa-history',
+                'uri'       => 'answers',
+            ],
         ]);
 
         // add role to menu.
